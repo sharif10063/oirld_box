@@ -1,0 +1,80 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+<Function>:
+    Screen:
+
+        name: 'first'
+        # BoxLayout:
+        #     size_hint_y:.2
+        #     pos_hint:{'top':1}
+        MDToolbar:
+            title: 'QR Code Generator'
+            font_style: 'H5'
+            pos_hint: {'top':1}
+            specific_text_color: 1,1,1,1
+            elevation: 9
+
+            
+        
+
+        BoxLayout:
+            
+            padding: "10dp"
+
+            size_hint_y: .1
+            pos_hint: {'center_y':.75}
+            
+            MDTextField:
+                id: link_text
+                fill_color: 0,0,0,1
+                icon_left: 'key-variant'
+                hint_text: 'Enter your URL to generate QR code...'
+                # helper_text_mode: "on_focus"
+                normal_color: 1,1,1,1
+                color_active: 1, 1, 1, 1
+                # pos_hint: {'center_y':.8}
+        BoxLayout:
+            size_hint_y: .1
+            pos_hint: {'center_y':.65}
+            padding: "10dp"    
+            MDTextField:
+                id: image_name
+                fill_color: 0,0,0,1
+                icon_left: 'key-variant'
+                hint_text: 'Enter your image name here..'
+                
+
+        
+
+        MDRectangleFlatButton:
+            text: 'generate'
+            on_release: root.generate_qr_code(root);app.show_notification()
+            pos_hint: {'center_x':.3, 'center_y':.1}
+
+        MDRectangleFlatButton:
+            text: 'view image'
+            on_release: root.view_image(root)
+            pos_hint: {'center_x':.7, 'center_y':.1}
+
+    Screen:
+        name: 'Result'
+        BoxLayout:
+            padding: 5
+            size_hint_y:.6
+            pos_hint:{'center_y':.5}
+            Image:
+                id: img_
+                
+
+        MDLabel:
+            text: 'QR CODE'
+            font_style: 'H4'
+            theme_text_color: 'Primary'
+            pos_hint:{'center_y':.9}
+            halign: 'center'
+        
+        MDRectangleFlatButton:
+            text:'make another'
+            pos_hint:{'center_x':.5, 'center_y':.15}
+            on_release: root.make_another(root)
+    
